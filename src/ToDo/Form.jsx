@@ -1,27 +1,15 @@
-
-function Form()
+import { useState } from "react";
+function Form({onFormSubmit})
 {
 
-    function handleFormSubmit(e) 
-    {
+    const [inputValue,setInputValue]=useState("");
+
+    function handleFormSubmit(e){
         e.preventDefault();
-        if (!inputValue) return;
-    
-        setTask((task) => {
-          if (!task.includes(inputValue)) 
-            {
-           // console.log(inputValue)
-           localStorage.setItem("taskarray",JSON.stringify([...task,inputValue]));
-            return [...task,inputValue];
-          }
-          else {
-          return task;
-          }
-        });
-       // console.log(taskk
-        setInputValue(""); 
-      }
-      
+        onFormSubmit(inputValue);
+        setInputValue("")
+    }
+
     return(
     <section className="form">
         <form
